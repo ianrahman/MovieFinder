@@ -109,7 +109,7 @@ xcuserdata
 ## Various settings
 
 ## Other
-Secrets.swift
+# Secrets.swift
 
 ### Xcode Patch ###
 *.xcodeproj/*
