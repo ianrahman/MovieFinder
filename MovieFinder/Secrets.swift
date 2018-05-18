@@ -12,7 +12,7 @@ import Foundation
 
 struct Secrets {
     
-    static let apiKey = ""
+    static let apiKey = "5d8f51d2ec7a3e89c94dddc0fc287bad"
     
 }
 

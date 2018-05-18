@@ -28,12 +28,23 @@ final class AppCoordinator: NSObject, RootViewCoordinator {
     fileprivate var nextPage: Int = 1
     fileprivate var totalPages: Int = Int.max
     fileprivate var notificationView: NotificationView?
-    fileprivate var isLoading = false
     fileprivate var currentEndpoint: APIEndpoint = .genres
     fileprivate let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "en-US"))
     fileprivate var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     fileprivate var recognitionTask: SFSpeechRecognitionTask?
     fileprivate lazy var audioEngine = AVAudioEngine()
+    var isLoading = false {
+        didSet {
+            if isLoading {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                    guard self.isLoading else { return }
+                    self.showNotificationView(.loading)
+                }
+            } else {
+                hideNotificationView()
+            }
+        }
+    }
     
     var rootViewController: UIViewController {
         return self.navigationController
@@ -110,12 +121,10 @@ extension AppCoordinator {
         }
         
         isLoading = true
-        showNotificationView(.loading)
-        
+
         services.networking.fetch(currentEndpoint) { (result) in
             self.isLoading = false
-            self.hideNotification()
-            
+
             switch result {
             case .success(let value):
                 switch self.currentEndpoint {

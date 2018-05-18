@@ -13,7 +13,8 @@ import Marshal
 //  MARK: - Movie Coordinator Delegate
 
 protocol MovieCoordinatorDelegate: class {
-    
+
+    var isLoading: Bool { get set }
     func didTapCloseButton(movieCoordinator: MovieCoordinator)
     func handleError(_ result: Result<Any>)
     func showNotification(type: NotificationType)
@@ -52,7 +53,7 @@ class MovieCoordinator: NSObject, RootViewCoordinator {
     // MARK: - General Functions
     
     func start() {
-        delegate?.showNotification(type: .loading)
+        delegate?.isLoading = true
         loadMovieDetails(for: movie) { (result) in
             switch result {
             case .success(let value):
@@ -71,7 +72,7 @@ class MovieCoordinator: NSObject, RootViewCoordinator {
                 self.delegate?.handleError(.failure(error))
             }
             
-            self.delegate?.hideNotification()
+            self.delegate?.isLoading = false
             
             DispatchQueue.main.async {
                 let storyboard = UIStoryboard(.movie)

@@ -112,7 +112,7 @@ struct NetworkingService {
     func fetch(_ endpoint: APIEndpoint,
                with completion: @escaping (Result<Any>) -> Void) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        
+
         Alamofire.request(endpoint.url,
                           method: endpoint.method,
                           parameters: endpoint.parameters,
