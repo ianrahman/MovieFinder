@@ -57,7 +57,7 @@ final class AppCoordinator: NSObject, RootViewCoordinator {
         let navigationBarAppearace = UINavigationBar.appearance()
         navigationBarAppearace.tintColor = .white
         navigationBarAppearace.barTintColor = .black
-        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        navigationBarAppearace.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
         showInitialViewController { (viewController) in
             loadCurrentEndpoint(with: viewController, completion: { (result) in
@@ -90,14 +90,14 @@ final class AppCoordinator: NSObject, RootViewCoordinator {
     fileprivate func shouldLoadNextPage() -> Bool {
         return nextPage <= totalPages && !isLoading
     }
-    
 }
 
 // MARK: - Networking Interface
 
 extension AppCoordinator {
     
-    fileprivate func loadCurrentEndpoint(with viewController: ResultsViewController, completion: @escaping (Result<Any>) -> Void) {
+    fileprivate func loadCurrentEndpoint(with viewController: ResultsViewController,
+                                         completion: @escaping (Result<Any>) -> Void) {
         
         switch currentEndpoint {
         case .search(let query, _):
@@ -172,7 +172,7 @@ extension AppCoordinator {
         switch result {
         case .failure(let error):
             let message = error.localizedDescription
-            showNotificationView(.defaultError(message: message))
+            showNotificationView(.defaultError(message))
         case.success(_): break
         }
     }
@@ -373,16 +373,15 @@ extension AppCoordinator: SFSpeechRecognizerDelegate {
             try audioSession.setActive(true, with: .notifyOthersOnDeactivation)
         } catch {
             let message = "Unable to set up audio session."
-            showNotificationView(.defaultError(message: message))
+            showNotificationView(.defaultError(message))
             return
         }
         
         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
-        guard let inputNode = audioEngine.inputNode,
-            let recognitionRequest = recognitionRequest else {
+        let inputNode = audioEngine.inputNode
+        guard let recognitionRequest = recognitionRequest else {
                 let message = "Unable to initiate speech recognition."
-                showNotificationView(.defaultError(message: message))
+                showNotificationView(.defaultError(message))
                 return
         }
         
@@ -430,7 +429,7 @@ extension AppCoordinator: SFSpeechRecognizerDelegate {
             try audioEngine.start()
         } catch let error {
             let message = error.localizedDescription
-            showNotificationView(.defaultError(message: message))
+            showNotificationView(.defaultError(message))
         }
     }
     

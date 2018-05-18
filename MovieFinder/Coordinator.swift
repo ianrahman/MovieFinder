@@ -16,7 +16,6 @@ protocol Coordinator: class {
     var childCoordinators: [Coordinator] { get set }
     var rootViewController: UIViewController { get }
     func start()
-    
 }
 
 // MARK: - Default Implementations
@@ -30,5 +29,4 @@ extension Coordinator {
     func removeChildCoordinator(_ childCoordinator: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== childCoordinator }
     }
-    
 }

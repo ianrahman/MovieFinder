@@ -1,7 +1,7 @@
 PODS:
-  - Alamofire (4.5.0)
-  - AlamofireImage (3.2.0):
-    - Alamofire (~> 4.1)
+  - Alamofire (4.7.2)
+  - AlamofireImage (3.3.1):
+    - Alamofire (~> 4.5)
   - Marshal (1.2.4)
 
 DEPENDENCIES:
@@ -9,11 +9,17 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.2)
   - Marshal (~> 1.2)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireImage
+    - Marshal
+
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
   Marshal: 8e04e6624e506921db7143b0bfd83caee03f32d6
 
 PODFILE CHECKSUM: 16efb7356c3a5fd43df593a90586d986164a7990
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.2

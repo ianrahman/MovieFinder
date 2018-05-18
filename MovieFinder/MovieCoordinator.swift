@@ -24,7 +24,7 @@ protocol MovieCoordinatorDelegate: class {
 //  MARK: - Movie Coordinator
 
 class MovieCoordinator: NSObject, RootViewCoordinator {
-    
+
     //  MARK: - Properties
     
     let services: Services
@@ -79,7 +79,6 @@ class MovieCoordinator: NSObject, RootViewCoordinator {
                 self.configureAndPresent(viewController: viewController)
             }
         }
-        
     }
     
     fileprivate func configureAndPresent(viewController: MovieViewController) {

@@ -86,7 +86,6 @@ extension UIView {
         view.frame = bounds
         return view
     }
-    
 }
 
 // MARK: - UIImageView
